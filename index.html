@@ -21,6 +21,7 @@
     </div>
     <nav class="head-nav">
       <button class="navbtn is-on" data-view="timeline">时间轴</button>
+      <button class="navbtn" data-view="painters">画家与画作</button>
       <button class="navbtn" data-view="gallery">图墙</button>
       <button class="navbtn" data-view="compare">对比</button>
       <button class="navbtn" data-view="glossary">术语</button>
@@ -46,6 +47,25 @@
       <p class="muted">选中一个流派，高亮它的来源与去向。</p>
       <div id="lineageBox" class="lineage-box"></div>
     </div>
+  </section>
+
+  <!-- 画家与画作视图 -->
+  <section class="view" id="view-painters" hidden>
+    <div class="view-intro">
+      <h1>画家与画作</h1>
+      <p>每位画家的定位、生平，以及<strong>他本人的代表作与逐幅赏析</strong>——看什么、为什么重要。可按时期、流派、地域筛选，也可切换成「按作品浏览」直接翻看全部作品赏析。</p>
+    </div>
+    <div class="filters" id="pFilters"></div>
+    <div class="gallery-meta">
+      <span id="pCount"></span>
+      <span class="pmode-wrap">
+        <button class="linkbtn" id="pClear">清除筛选</button>
+        <span class="pmode-sep">·</span>
+        <button class="chip pmode is-on" data-pmode="painter">按画家</button>
+        <button class="chip pmode" data-pmode="work">按作品</button>
+      </span>
+    </div>
+    <div id="pGrid" class="painter-grid"></div>
   </section>
 
   <!-- 图墙视图 -->
@@ -108,7 +128,7 @@
 
 <footer class="site-foot">
   <div class="wrap">
-    <p>共 <strong id="statStyles">0</strong> 个流派 · <strong id="statPainters">0</strong> 位画家 · <strong id="statWorks">0</strong> 件代表作品 · <strong id="statTerms">0</strong> 条术语</p>
+    <p>共 <strong id="statStyles">0</strong> 个流派 · <strong id="statPainters">0</strong> 位画家 · <strong id="statProfiles">0</strong> 位画家附详细档案 · <strong id="statNotes">0</strong> 篇作品赏析 · <strong id="statTerms">0</strong> 条术语</p>
     <p class="muted">作品图片与元数据来自 The Metropolitan Museum of Art Open Access（CC0）。1930 年后的现代与当代作品多数仍在版权保护期，故公版图片有限，相关流派以文字与代表作清单为主。</p>
   </div>
 </footer>
@@ -119,6 +139,9 @@
 <script src="data/part4-contemporary-nonwestern.js"></script>
 <script src="data/part5-supplements.js"></script>
 <script src="data/schemas.js"></script>
+<script src="data/painters-a.js"></script>
+<script src="data/painters-b.js"></script>
+<script src="data/painters-c.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

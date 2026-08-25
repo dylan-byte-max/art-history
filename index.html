@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美术史图谱 · 时期 · 流派 · 画家 · 画作</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%238a5a3c'/%3E%3Ccircle cx='11' cy='12' r='4' fill='%23e8c547'/%3E%3Ccircle cx='21' cy='13' r='3.2' fill='%23c0392b'/%3E%3Ccircle cx='15' cy='22' r='3.6' fill='%232e6b8a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">美术史图谱</span>
+    </div>
+    <div class="search-box">
+      <input type="search" id="globalSearch" placeholder="搜索流派、画家、作品或术语，如 印象派 / 莫奈 / 明暗对照" autocomplete="off">
+      <div id="searchResults" class="search-results" hidden></div>
+    </div>
+    <nav class="head-nav">
+      <button class="navbtn is-on" data-view="timeline">时间轴</button>
+      <button class="navbtn" data-view="gallery">图墙</button>
+      <button class="navbtn" data-view="compare">对比</button>
+      <button class="navbtn" data-view="glossary">术语</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+
+  <!-- 时间轴视图 -->
+  <section class="view" id="view-timeline">
+    <div class="view-intro">
+      <h1>美术史脉络</h1>
+      <p>按时间横向排布各时期与流派，色块宽度对应延续年代。点击任一流派查看风格特点、识别要点、代表画家与作品。箭头表示影响关系——<strong>看清谁继承了谁、谁反叛了谁，是理解美术史的关键</strong>。</p>
+      <div class="era-legend" id="eraLegend"></div>
+    </div>
+    <div class="tl-scroll">
+      <div class="tl-axis" id="tlAxis"></div>
+      <div class="tl-body" id="tlBody"></div>
+    </div>
+    <div class="lineage-panel">
+      <h2>影响关系速查</h2>
+      <p class="muted">选中一个流派，高亮它的来源与去向。</p>
+      <div id="lineageBox" class="lineage-box"></div>
+    </div>
+  </section>
+
+  <!-- 图墙视图 -->
+  <section class="view" id="view-gallery" hidden>
+    <div class="view-intro">
+      <h1>作品图墙</h1>
+      <p>看到一幅画想知道它属于哪派？用下方维度反向筛选。图片与元数据来自大都会艺术博物馆公版馆藏，点击可跳转原始记录。</p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="gallery-meta"><span id="galleryCount"></span><button class="linkbtn" id="clearFilters">清除全部筛选</button></div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- 对比视图 -->
+  <section class="view" id="view-compare" hidden>
+    <div class="view-intro">
+      <h1>流派对比</h1>
+      <p>选择两个流派并排比较，快速看出风格主张、识别要点与历史背景的差异。<strong>对比是分辨相近流派最有效的方法</strong>，比如印象派与后印象派、巴洛克与洛可可。</p>
+    </div>
+    <div class="cmp-pickers">
+      <select id="cmpA" class="sel"></select>
+      <span class="cmp-vs">对比</span>
+      <select id="cmpB" class="sel"></select>
+      <div class="cmp-presets">
+        <button class="chip" data-a="impressionism" data-b="post-impressionism">印象派 vs 后印象派</button>
+        <button class="chip" data-a="baroque" data-b="rococo">巴洛克 vs 洛可可</button>
+        <button class="chip" data-a="neoclassicism" data-b="romanticism">新古典 vs 浪漫</button>
+        <button class="chip" data-a="renaissance-high" data-b="mannerism">盛期文艺复兴 vs 样式主义</button>
+        <button class="chip" data-a="chinese-painting" data-b="renaissance-early">中国画 vs 早期文艺复兴</button>
+      </div>
+    </div>
+    <div class="cmp-grid" id="cmpGrid"></div>
+  </section>
+
+  <!-- 术语视图 -->
+  <section class="view" id="view-glossary" hidden>
+    <div class="view-intro">
+      <h1>术语词典</h1>
+      <p>美术史术语按首字母与所属流派索引。<strong>术语是理解风格描述的钥匙</strong>——知道什么是「渐隐法」「对偶式平衡」「地窖光」，才能读懂作品分析。</p>
+    </div>
+    <input type="search" id="glossarySearch" class="glossary-search" placeholder="筛选术语…">
+    <div class="glossary-list" id="glossaryList"></div>
+  </section>
+
+</main>
+
+<!-- 流派详情抽屉 -->
+<div class="drawer-mask" id="drawerMask" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="流派详情">
+  <button class="drawer-close" id="drawerClose" aria-label="关闭">&times;</button>
+  <div class="drawer-inner" id="drawerInner"></div>
+</aside>
+
+<!-- 图片灯箱 -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" id="lbClose" aria-label="关闭">&times;</button>
+  <img id="lbImg" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>共 <strong id="statStyles">0</strong> 个流派 · <strong id="statPainters">0</strong> 位画家 · <strong id="statWorks">0</strong> 件代表作品 · <strong id="statTerms">0</strong> 条术语</p>
+    <p class="muted">作品图片与元数据来自 The Metropolitan Museum of Art Open Access（CC0）。1930 年后的现代与当代作品多数仍在版权保护期，故公版图片有限，相关流派以文字与代表作清单为主。</p>
+  </div>
+</footer>
+
+<script src="data/part1-ancient-renaissance.js"></script>
+<script src="data/part2-baroque-19c.js"></script>
+<script src="data/part3-modernism.js"></script>
+<script src="data/part4-contemporary-nonwestern.js"></script>
+<script src="data/part5-supplements.js"></script>
+<script src="data/schemas.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

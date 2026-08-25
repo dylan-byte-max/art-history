@@ -247,3 +247,52 @@ button{font-family:inherit;cursor:pointer}
 .gimg-schema{display:flex;align-items:center;justify-content:center;
   background:#f5f1ea;cursor:pointer;padding:0}
 .gimg-schema svg{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ---------- 画家与画作 ---------- */
+.pmode-wrap{display:inline-flex;align-items:center;gap:8px}
+.pmode-sep{color:var(--line2)}
+.chip.pmode{font-size:12px;padding:4px 11px}
+.painter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:16px}
+.pcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);
+  overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:.16s;
+  display:flex;flex-direction:column}
+.pcard:hover{transform:translateY(-2px);box-shadow:0 5px 20px rgba(31,28,23,.13);border-color:var(--line2)}
+.pcard-thumb{position:relative;width:100%;aspect-ratio:16/10;background:#f0ece4;overflow:hidden}
+.pcard-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.pcard-thumb.no-img{background:repeating-linear-gradient(45deg,#f2ede4,#f2ede4 9px,#ece6da 9px,#ece6da 18px)}
+.pcard-era{position:absolute;left:9px;top:9px;font-size:11px;padding:2px 9px;border-radius:11px;
+  color:#fff;font-family:system-ui,sans-serif}
+.pcard-body{padding:13px 15px 15px;display:flex;flex-direction:column;gap:4px;flex:1}
+.pcard-name{font-size:16px;font-weight:600}
+.pcard-meta{font-size:11.5px;color:var(--ink3);font-family:system-ui,sans-serif}
+.pcard-role{font-size:13px;color:var(--accent);margin-top:2px}
+.pcard-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.pcard-works{font-size:12px;color:var(--ink2);line-height:1.6;margin-top:6px;
+  padding-top:8px;border-top:1px solid var(--line)}
+.work-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:14px}
+.wcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);
+  padding:16px 18px;box-shadow:var(--shadow)}
+.wcard-head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.wcard-title{font-size:15.5px;font-weight:600}
+.wcard-en{font-size:11.5px;color:var(--ink3);font-family:system-ui,sans-serif}
+.wcard-meta{font-size:12.5px;color:var(--ink2);margin-top:3px}
+.wcard-note{font-size:13.5px;line-height:1.75;color:var(--ink);margin-top:9px}
+.wcard-foot{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:11px;
+  padding-top:10px;border-top:1px solid var(--line)}
+.p-role-line{font-size:14px;color:var(--accent);margin-bottom:18px;padding-bottom:14px;
+  border-bottom:1px solid var(--line)}
+.pw-list{display:flex;flex-direction:column;gap:14px}
+.pw-item{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px}
+.pw-head{display:flex;align-items:flex-start;gap:11px}
+.pw-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--accent);
+  color:#fff;font-size:11.5px;display:flex;align-items:center;justify-content:center;
+  font-family:system-ui,sans-serif;margin-top:2px}
+.pw-titles{flex:1}
+.pw-title{font-size:15px;font-weight:600;line-height:1.4}
+.pw-en{font-size:11.5px;color:var(--ink3);font-family:system-ui,sans-serif;margin-top:1px}
+.pw-meta{font-size:12px;color:var(--ink3);font-family:system-ui,sans-serif;margin:7px 0 0 33px}
+.pw-note{font-size:14px;line-height:1.8;color:var(--ink2);margin:8px 0 0 33px}
+@media(max-width:900px){
+  .work-list{grid-template-columns:1fr}
+  .pw-meta,.pw-note{margin-left:0}
+}

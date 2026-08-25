@@ -209,6 +209,9 @@ button{font-family:inherit;cursor:pointer}
 .d-tag{font-size:12px;padding:3px 10px;border-radius:13px;background:#f2ede4;
   border:1px solid var(--line);color:var(--ink2);font-family:system-ui,sans-serif}
 
+/* hidden 属性必须能覆盖任何 display 设置，否则覆盖层会永久挡住页面 */
+[hidden]{display:none !important}
+
 /* ---------- lightbox ---------- */
 .lightbox{position:fixed;inset:0;background:rgba(20,18,15,.94);z-index:80;
   display:flex;flex-direction:column;align-items:center;justify-content:center;padding:34px}

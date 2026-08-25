@@ -557,6 +557,29 @@ function renderGlossary(){
 }
 $('glossarySearch').addEventListener('input',renderGlossary);
 
+/* 把流派名单里的画家匹配到画家档案：先精确、再归一化中文名、最后比英文姓氏 */
+function matchProfile(entry, pool){
+  pool = pool || PT;
+  var n = entry.name||'', en = (entry.nameEn||'').toLowerCase();
+  var hit = pool.filter(function(q){ return q.name===n; })[0];
+  if(hit) return hit;
+  var nn = normKey(n);
+  hit = pool.filter(function(q){
+    var qn = normKey(q.name);
+    return qn===nn || qn.indexOf(nn)>=0 || nn.indexOf(qn)>=0;
+  })[0];
+  if(hit) return hit;
+  if(en){
+    var sur = en.replace(/[^a-z\s]/g,' ').trim().split(/\s+/).pop();
+    if(sur && sur.length>3){
+      hit = pool.filter(function(q){
+        return (q.nameEn||'').toLowerCase().indexOf(sur)>=0;
+      })[0];
+    }
+  }
+  return hit||null;
+}
+
 /* ============ 详情抽屉 ============ */
 function openDrawer(id){
   var s=byId[id]; if(!s) return;
@@ -614,6 +637,10 @@ function openDrawer(id){
 
   var p=sec('代表画家');
   var profiled=ptByStyle[s.id]||[];
+  var listed=(s.painters||[]);
+  var unlisted=profiled.filter(function(q){
+    return !listed.some(function(x){ return matchProfile(x,[q]); });
+  });
   if(profiled.length){
     var pnote=el('p','muted','以下画家有完整档案（生平 + 代表作逐幅赏析），点击进入：');
     pnote.style.marginBottom='9px';
@@ -633,12 +660,14 @@ function openDrawer(id){
     i.appendChild(el('div','p-name',esc(x.name)+'<span class="p-life">'+esc(x.life)+'</span>'));
     i.appendChild(el('div','p-en',esc(x.nameEn)));
     if(x.note) i.appendChild(el('div','p-note',esc(x.note)));
-    var prof=profiled.filter(function(q){ return q.name===x.name; })[0];
+    var prof=matchProfile(x, profiled);
     if(prof){
       var b=el('button','linkbtn','查看完整档案与 '+prof.works.length+' 篇作品赏析 →');
       b.style.marginTop='6px';
       b.addEventListener('click',function(){ openPainter(prof.id); });
       i.appendChild(b);
+    } else if(/工匠|工坊|行会|画师$|陶工|织工|石匠|体系/.test(x.name)){
+      i.appendChild(el('div','p-anon','匿名创作集体，无个人生平与可归属的独立代表作，故不单独建档'));
     }
     pl.appendChild(i);
   });
@@ -735,54 +764,156 @@ document.addEventListener('keydown',function(e){
 });
 
 /* ============ 全局搜索 ============ */
+// 归一化：去掉所有间隔符与空白，便于「达芬奇」匹配「达·芬奇」
+function normKey(s){
+  return String(s||'').toLowerCase()
+    .replace(/[·•\.\-–—_\s、，,()（）"'"'\/]/g,'');
+}
+// 常用简称与别名（用户习惯叫法 -> 目标）
+var ALIAS = {
+  '达芬奇':'列奥纳多达芬奇 leonardo davinci','蒙娜':'蒙娜丽莎',
+  '米开朗基罗':'米开朗基罗 michelangelo','米开朗琪罗':'米开朗基罗',
+  '梵谷':'梵高','凡高':'梵高','梵高':'文森特梵高 vangogh',
+  '莫奈':'克劳德莫奈 monet','马奈':'爱德华马奈 manet',
+  '毕加索':'巴勃罗毕加索 picasso','毕卡索':'毕加索',
+  '塞尚':'保罗塞尚 cezanne','高更':'保罗高更 gauguin',
+  '雷诺阿':'雷诺阿 renoir','雷诺瓦':'雷诺阿',
+  '德加':'埃德加德加 degas','修拉':'乔治修拉 seurat',
+  '伦勃朗':'伦勃朗 rembrandt','林布兰':'伦勃朗',
+  '维米尔':'约翰内斯维米尔 vermeer','维梅尔':'维米尔',
+  '拉斐尔':'拉斐尔 raphael','提香':'提香 titian','提齐安诺':'提香',
+  '卡拉瓦乔':'卡拉瓦乔 caravaggio','鲁本斯':'鲁本斯 rubens',
+  '委拉斯开兹':'委拉斯开兹 velazquez','委拉斯凯兹':'委拉斯开兹','贝拉斯克斯':'委拉斯开兹',
+  '哥雅':'哥雅 goya','戈雅':'哥雅','透纳':'透纳 turner','特纳':'透纳',
+  '德拉克洛瓦':'德拉克洛瓦 delacroix','安格尔':'安格尔 ingres',
+  '大卫':'雅克路易大卫 david','库尔贝':'库尔贝 courbet','米勒':'米勒 millet',
+  '北斋':'葛饰北斋 hokusai','广重':'歌川广重 hiroshige','歌麿':'喜多川歌麿 utamaro',
+  '克里姆特':'克里姆特 klimt','马蒂斯':'马蒂斯 matisse','马提斯':'马蒂斯',
+  '蒙克':'爱德华蒙克 munch','孟克':'蒙克',
+  '康定斯基':'康定斯基 kandinsky','蒙德里安':'蒙德里安 mondrian',
+  '达利':'萨尔瓦多达利 dali','马格里特':'马格里特 magritte',
+  '杜尚':'马塞尔杜尚 duchamp','波洛克':'波洛克 pollock','帕洛克':'波洛克',
+  '罗斯科':'罗斯科 rothko','沃霍尔':'安迪沃霍尔 warhol','沃霍':'沃霍尔','安迪沃荷':'沃霍尔',
+  '卡罗':'弗里达卡罗 kahlo','弗里达':'弗里达卡罗',
+  '布拉克':'布拉克 braque','丢勒':'丢勒 durer','杜勒':'丢勒',
+  '勃鲁盖尔':'勃鲁盖尔 bruegel','布鲁盖尔':'勃鲁盖尔',
+  '凡艾克':'扬凡艾克 vaneyck','范艾克':'凡艾克',
+  '格列柯':'埃尔格列柯 elgreco','埃尔格雷考':'格列柯',
+  '波提切利':'波提切利 botticelli','波堤切利':'波提切利',
+  '乔托':'乔托 giotto','马萨乔':'马萨乔 masaccio',
+  '范宽':'范宽 fankuan','倪瓒':'倪瓒 nizan',
+  '印象':'印象派','立体':'立体主义','抽象':'抽象'
+};
+function expandQuery(q){
+  var n=normKey(q), extra='';
+  Object.keys(ALIAS).forEach(function(k){
+    if(normKey(k).indexOf(n)>=0 || n.indexOf(normKey(k))>=0) extra+=' '+ALIAS[k];
+  });
+  return {raw:n, extra:normKey(extra)};
+}
+
 function buildIndex(){
   var idx=[];
+  function add(o){
+    o.nk = normKey(o.key);           // 归一化后的检索键
+    idx.push(o);
+  }
   D.forEach(function(s){
-    idx.push({kind:'流派',label:s.name,sub:s.nameEn+' · '+s.yearLabel,sid:s.id,key:(s.name+s.nameEn+s.era+s.region).toLowerCase()});
+    add({kind:'流派',label:s.name,sub:s.nameEn+' · '+s.yearLabel,sid:s.id,
+      key:s.name+s.nameEn+s.era+s.region});
     (s.terms||[]).forEach(function(t){
-      idx.push({kind:'术语',label:t.t,sub:t.d.slice(0,42),sid:s.id,key:(t.t+t.d).toLowerCase()});
+      add({kind:'术语',label:t.t,sub:t.d.slice(0,42),sid:s.id,key:t.t+t.d});
     });
   });
-  // 画家档案与其代表作优先于流派内的简略名单
   PT.forEach(function(p){
-    idx.push({kind:'画家',label:p.name,sub:p.nameEn+' · '+p.life+' · '+ptStyleNames(p).join('/'),pid:p.id,
-      key:(p.name+p.nameEn+p.role+(p.region||'')).toLowerCase()});
+    add({kind:'画家',label:p.name,sub:p.nameEn+' · '+p.life+' · '+ptStyleNames(p).join('/'),pid:p.id,
+      key:p.name+p.nameEn+p.role+(p.region||'')+ptStyleNames(p).join('')});
     p.works.forEach(function(w){
-      idx.push({kind:'作品',label:w.title,sub:p.name+' · '+w.year+' · 含赏析',pid:p.id,
-        key:(w.title+(w.titleEn||'')+p.name).toLowerCase()});
+      add({kind:'作品',label:w.title,sub:p.name+' · '+w.year+' · 含赏析',pid:p.id,
+        key:w.title+(w.titleEn||'')+p.name+p.nameEn});
     });
   });
-  // 流派内未建档案的画家与作品，作为补充
   D.forEach(function(s){
     (s.painters||[]).forEach(function(q){
-      var has=PT.some(function(p){ return p.name===q.name; });
-      if(!has) idx.push({kind:'画家',label:q.name,sub:(q.nameEn||'')+' · '+s.name,sid:s.id,key:(q.name+(q.nameEn||'')).toLowerCase()});
+      var has=PT.some(function(p){ return normKey(p.name)===normKey(q.name); });
+      if(!has) add({kind:'画家',label:q.name,sub:(q.nameEn||'')+' · '+s.name,sid:s.id,
+        key:q.name+(q.nameEn||'')+(q.note||'')});
     });
     (s.works||[]).forEach(function(w){
-      var has=PT.some(function(p){ return p.works.some(function(x){ return x.title===w.title; }); });
-      if(!has) idx.push({kind:'作品',label:w.title,sub:(w.artist||'')+' · '+s.name,sid:s.id,key:(w.title+(w.titleEn||'')+(w.artist||'')).toLowerCase()});
+      var has=PT.some(function(p){ return p.works.some(function(x){ return normKey(x.title)===normKey(w.title); }); });
+      if(!has) add({kind:'作品',label:w.title,sub:(w.artist||'')+' · '+s.name,sid:s.id,
+        key:w.title+(w.titleEn||'')+(w.artist||'')});
     });
   });
   return idx;
 }
 var IDX=buildIndex();
+
+// 打分：完全包含 > 别名命中 > 逐字散落匹配
+function scoreHit(item,q){
+  var nk=item.nk, lab=normKey(item.label);
+  if(!q.raw) return 0;
+  var sc=0;
+  if(lab===q.raw) sc=1000;
+  else if(lab.indexOf(q.raw)===0) sc=600;
+  else if(lab.indexOf(q.raw)>=0) sc=400;
+  else if(nk.indexOf(q.raw)>=0) sc=200;
+  else if(q.extra){
+    // 别名扩展命中
+    var toks=q.extra.split(/\s+/).filter(Boolean);
+    for(var i=0;i<toks.length;i++){
+      if(toks[i].length>1 && (nk.indexOf(toks[i])>=0||lab.indexOf(toks[i])>=0)){ sc=150; break; }
+    }
+  }
+  if(!sc && q.raw.length>=2){
+    // 逐字散落：所有字都出现且顺序一致
+    var pos=-1, ok=true;
+    for(var j=0;j<q.raw.length;j++){
+      pos=nk.indexOf(q.raw[j],pos+1);
+      if(pos<0){ ok=false; break; }
+    }
+    if(ok) sc=80;
+  }
+  if(sc){
+    if(item.pid) sc+=30;                       // 有完整档案的优先
+    if(item.kind==='画家') sc+=12;
+    if(item.kind==='作品') sc+=8;
+  }
+  return sc;
+}
+
 var si=$('globalSearch'), sr=$('searchResults');
-si.addEventListener('input',function(){
-  var q=si.value.trim().toLowerCase();
-  if(!q){ sr.hidden=true; return; }
-  var hits=IDX.filter(function(x){ return x.key.indexOf(q)>=0; }).slice(0,26);
+function runSearch(){
+  var qs=si.value.trim();
+  if(!qs){ sr.hidden=true; return; }
+  var q=expandQuery(qs);
+  var hits=[];
+  IDX.forEach(function(x){
+    var s=scoreHit(x,q);
+    if(s>0) hits.push({x:x,s:s});
+  });
+  hits.sort(function(a,b){ return b.s-a.s; });
+  hits=hits.slice(0,30);
   sr.innerHTML='';
-  if(!hits.length){ sr.innerHTML='<div class="sr-item"><span class="muted">没有匹配结果</span></div>'; sr.hidden=false; return; }
+  if(!hits.length){
+    sr.innerHTML='<div class="sr-item"><span class="muted">没有匹配结果，可试试画家姓氏、作品名或流派名</span></div>';
+    sr.hidden=false; return;
+  }
   hits.forEach(function(h){
-    var d=el('div','sr-item','<span class="sr-kind">'+h.kind+'</span><b>'+esc(h.label)+'</b><div class="sr-sub">'+esc(h.sub)+'</div>');
+    var it=h.x;
+    var d=el('div','sr-item','<span class="sr-kind">'+it.kind+'</span><b>'+esc(it.label)+'</b>'+
+      (it.pid?'<span class="sr-badge">档案</span>':'')+
+      '<div class="sr-sub">'+esc(it.sub)+'</div>');
     d.addEventListener('click',function(){
       sr.hidden=true; si.value='';
-      if(h.pid) openPainter(h.pid); else openDrawer(h.sid);
+      if(it.pid) openPainter(it.pid); else openDrawer(it.sid);
     });
     sr.appendChild(d);
   });
   sr.hidden=false;
-});
+}
+si.addEventListener('input',runSearch);
+si.addEventListener('focus',function(){ if(si.value.trim()) runSearch(); });
 document.addEventListener('click',function(e){
   if(!si.contains(e.target) && !sr.contains(e.target)) sr.hidden=true;
 });

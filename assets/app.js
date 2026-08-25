@@ -601,8 +601,8 @@ function openDrawer(id){
   if(schema){
     var sc=sec(imgs.length? '风格示意图' : '风格示意图 · 该流派无公版作品图');
     var wrap=el('div','schema-wrap');
-    var box=el('div','schema-box',schema.svg);
-    wrap.appendChild(box);
+    var schemaBox=el('div','schema-box',schema.svg);
+    wrap.appendChild(schemaBox);
     var txt=el('div','schema-txt');
     txt.appendChild(el('div','schema-label',esc(schema.label)));
     txt.appendChild(el('div','schema-desc',esc(schema.desc)));

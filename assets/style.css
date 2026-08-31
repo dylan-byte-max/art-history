@@ -10,6 +10,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);
   font:15px/1.7 "Noto Serif SC","Songti SC",Georgia,"Microsoft YaHei",serif;-webkit-font-smoothing:antialiased}
+:root{--head-h:62px}
 .wrap{max-width:1280px;margin:0 auto;padding:0 24px}
 h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:.01em}
 h1{font-size:26px}h2{font-size:19px}h3{font-size:16px}
@@ -50,9 +51,9 @@ button{font-family:inherit;cursor:pointer}
 
 /* ---------- view ---------- */
 .view{padding:30px 0 60px}
-.view-intro{max-width:820px;margin-bottom:26px}
+.view-intro{margin-bottom:26px}
 .view-intro h1{margin-bottom:9px}
-.view-intro p{color:var(--ink2);font-size:14.5px}
+.view-intro p{color:var(--ink2);font-size:14.5px;max-width:820px}
 .era-legend{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
 .era-tag{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:4px 11px;
   border-radius:20px;background:var(--panel);border:1px solid var(--line);
@@ -62,12 +63,22 @@ button{font-family:inherit;cursor:pointer}
 .era-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 
 /* ---------- timeline ---------- */
-.tl-scroll{overflow-x:auto;padding-bottom:14px;border-radius:var(--r2);
-  background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}
-.tl-axis{position:relative;height:32px;margin:14px 20px 0;border-bottom:1px solid var(--line2);min-width:1900px}
+/* 坐标轴独立于滚动容器之外，sticky 到视口顶部（避开固定表头）。
+   实测结论：若把坐标轴放进 overflow-x 容器内，其 sticky 会被父级滚动上下文限制而失效
+   （探针测得滚动后 top 变成 -475，完全没粘住）。
+   因此改为：外层 sticky 定位 + .tl-axis-clip 裁剪 + JS 同步 translateX 实现横向跟随。 */
+.tl-axis-sticky{position:sticky;top:var(--head-h,62px);z-index:7;
+  background:var(--panel);border:1px solid var(--line);border-bottom:none;
+  border-radius:var(--r2) var(--r2) 0 0;box-shadow:0 3px 9px rgba(31,28,23,.07)}
+.tl-axis-clip{overflow:hidden}
+.tl-axis{position:relative;height:32px;margin:12px 20px 0;
+  border-bottom:1px solid var(--line2);min-width:1900px;will-change:transform}
 .tl-tick{position:absolute;bottom:0;font-size:11px;color:var(--ink3);
   transform:translateX(-50%);font-family:system-ui,sans-serif;white-space:nowrap}
 .tl-tick::after{content:"";position:absolute;left:50%;bottom:-6px;width:1px;height:6px;background:var(--line2)}
+.tl-scroll{overflow-x:auto;padding-bottom:14px;
+  border-radius:0 0 var(--r2) var(--r2);
+  background:var(--panel);border:1px solid var(--line);border-top:none;box-shadow:var(--shadow)}
 .tl-body{position:relative;margin:0 20px;min-width:1900px;padding:14px 0 20px}
 .tl-row{position:relative;height:40px;margin-bottom:5px}
 .tl-bar{position:absolute;height:32px;border-radius:7px;display:flex;align-items:center;
@@ -309,7 +320,8 @@ button{font-family:inherit;cursor:pointer}
 .tl-band{position:relative;padding:8px 0 10px;border-top:1px solid var(--line)}
 .tl-band:first-child{border-top:none;padding-top:2px}
 .tl-band-head{position:sticky;left:0;display:inline-flex;align-items:center;gap:7px;
-  margin-bottom:6px;padding:2px 10px 2px 2px;background:var(--bg);z-index:2;border-radius:6px}
+  margin-bottom:6px;padding:3px 12px 3px 4px;background:var(--panel);z-index:3;border-radius:6px;
+  box-shadow:2px 0 5px rgba(31,28,23,.05)}
 .tl-band-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 .tl-band-name{font-size:12.5px;font-weight:600;color:var(--ink2);
   font-family:system-ui,sans-serif;letter-spacing:.02em}
@@ -317,7 +329,8 @@ button{font-family:inherit;cursor:pointer}
 .tl-band-lanes{position:relative}
 .tl-sep{position:relative;margin:16px 0 4px;padding-top:14px;border-top:2px dashed var(--line2)}
 .tl-sep-lbl{position:sticky;left:0;display:inline-block;font-size:11.5px;color:var(--ink3);
-  font-family:system-ui,sans-serif;background:var(--bg);padding:2px 10px 2px 2px;line-height:1.5}
+  font-family:system-ui,sans-serif;background:var(--panel);padding:3px 12px 3px 4px;line-height:1.5;
+  z-index:3;border-radius:6px}
 
 /* 分带模式下压缩行高，抵消分带带来的高度增长 */
 .tl-band-lanes .tl-row{height:33px;margin-bottom:3px}
@@ -327,7 +340,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ---------- 读图说明 ---------- */
 .howto{margin:14px 0 4px;padding:14px 18px;background:var(--panel);
-  border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;max-width:940px}
+  border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px}
 .howto-t{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:8px}
 .howto ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px}
 .howto li{font-size:13px;line-height:1.7;color:var(--ink2)}

@@ -6,13 +6,39 @@ const html = fs.readFileSync('./index.html', 'utf8');
 let fail = 0;
 function ok(cond, msg){ console.log((cond ? '  OK   ' : '  FAIL ') + msg); if(!cond) fail++; }
 
-// 取某个选择器的规则体（取最后一次出现，因为后面的会覆盖前面的）
-function rule(sel){
+/* 提取规则时必须区分「顶层规则」与「@media 内的覆盖」。
+   原实现取最后一次匹配，一旦某选择器在 @media 里被重新声明
+   （如 .tl-axis 在 560px 断点里只改 margin），就会读到那个简化版本，
+   从而误报顶层属性缺失（曾导致 3 项假失败）。
+   解法：先把所有 @media{...} 块按花括号配平剥掉，只在顶层 CSS 里查。 */
+const cssTop = (() => {
+  let out = '', i = 0;
+  while (i < css.length) {
+    const at = css.indexOf('@media', i);
+    if (at < 0) { out += css.slice(i); break; }
+    out += css.slice(i, at);
+    let brace = css.indexOf('{', at);
+    if (brace < 0) break;
+    let depth = 1, j = brace + 1;
+    while (j < css.length && depth > 0) {
+      if (css[j] === '{') depth++;
+      else if (css[j] === '}') depth--;
+      j++;
+    }
+    i = j;
+  }
+  return out;
+})();
+
+function ruleIn(src, sel){
   const re = new RegExp(sel.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\s*\\{([^}]*)\\}', 'g');
   let m, last = null;
-  while ((m = re.exec(css)) !== null) last = m[1];
+  while ((m = re.exec(src)) !== null) last = m[1];
   return last;
 }
+// 默认只查顶层规则；需要断言断点内样式时用 ruleInMedia
+function rule(sel){ return ruleIn(cssTop, sel); }
+function ruleInMedia(sel){ return ruleIn(css, sel); }
 function prop(sel, name){
   const body = rule(sel);
   if (!body) return null;
@@ -71,6 +97,38 @@ ok(zAxis > zHead, '坐标轴层级(' + zAxis + ') 高于带头(' + zHead + ')');
 ok(!Number.isNaN(zSep) ? zAxis > zSep : true, '坐标轴层级高于分隔说明(' + zSep + ')');
 ok(/var\(--panel\)/.test(prop('.tl-band-head','background') || ''),
    '带头背景改为 panel（与容器一致，原为 bg 会有色差）');
+// 表头 z-index 40：坐标轴必须接近它，否则一旦位置有偏差就会被表头压住
+const zSite = Number(prop('.site-head','z-index'));
+ok(zAxis >= zSite - 1,
+   '坐标轴层级(' + zAxis + ') 不低于表头(' + zSite + ')太多，避免被表头盖住');
+
+console.log('');
+console.log('=== 5. 移动端：表头换行变高，sticky 偏移必须动态实测 ===');
+const js5 = fs.readFileSync('./assets/app.js','utf8');
+// 曾出现的 bug：--head-h 写死 62px，但移动端表头换行后实际 106px，
+// 导致坐标轴被表头盖住 44px，手机上看起来「完全没粘住」。
+ok(/function syncHeadHeight\(\)/.test(js5),
+   '存在 syncHeadHeight()：实测表头高度而非写死');
+ok(/setProperty\('--head-h'/.test(js5),
+   'syncHeadHeight 把实测值写入 --head-h');
+ok(/getBoundingClientRect\(\)\.height/.test(js5),
+   '用 getBoundingClientRect 取真实高度');
+ok(/orientationchange/.test(js5),
+   '监听 orientationchange（手机转屏后表头高度会变）');
+ok(/document\.fonts[\s\S]{0,40}then\(syncHeadHeight\)/.test(js5),
+   '字体载入完成后重测（衬线字体会影响表头高度）');
+ok(/window\.addEventListener\('resize'/.test(js5) && /syncHeadHeight\(\); syncAxis\(\)/.test(js5),
+   'resize 时同时重测表头高度与横向偏移');
+ok(/@media\(max-width:560px\)/.test(css),
+   '存在 560px 手机断点');
+const mHead = ruleInMedia('.head-inner');
+ok(mHead !== null && /padding/.test(mHead),
+   '窄屏压缩了表头内边距（减少换行后的高度）');
+ok(/-webkit-overflow-scrolling:touch/.test(css),
+   '横向滚动容器启用 iOS 惯性滚动');
+// sticky top 仍须引用变量，不能被改回硬编码
+ok(/var\(--head-h/.test(prop('.tl-axis-sticky','top') || ''),
+   '.tl-axis-sticky top 仍引用 --head-h 变量（不可硬编码）');
 
 console.log('');
 console.log(fail === 0 ? '全部通过 ✓' : fail + ' 项失败');

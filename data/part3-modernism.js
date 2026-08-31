@@ -32,7 +32,7 @@ window.AH_DATA.push(
     {title:'蓬图瓦兹的收获', titleEn:'The Harvest, Pontoise', year:'1881', artist:'毕沙罗', where:'纽约大都会博物馆'}
   ],
   context:'奥斯曼改造后的巴黎出现了宽阔林荫道与咖啡馆文化，铁路让郊游成为中产日常，这些都成为新题材。锡管颜料与便携画架使户外作画可行，摄影术接手了记录职能，日本浮世绘的平面构图经通商传入并提供了替代透视的范例。1874年首次独立展览标志着脱离沙龙体系。',
-  from:['realism','romanticism','dutch-golden-age','ukiyo-e'], to:['post-impressionism','neo-impressionism','fauvism'],
+  from:['realism','romanticism','dutch-golden-age','ukiyo-e','spanish-golden-age','hudson-river-school'], to:['post-impressionism','neo-impressionism','fauvism'],
   terms:[
     {t:'视觉混色', d:'Optical mixing，纯色并置由眼睛完成混合，比调色板混色更明亮'},
     {t:'外光派', d:'Plein air，在户外现场完成整幅作品的实践方式'},
@@ -141,7 +141,7 @@ window.AH_DATA.push(
     {title:'死之岛', titleEn:'Isle of the Dead', year:'1880–1886', artist:'勃克林', where:'巴塞尔美术馆等'}
   ],
   context:'世纪末欧洲弥漫着对物质主义与实证科学的反感，颓废派文学与瓦格纳的整体艺术观提供了美学参照。心理学对无意识的初步探索、以及神秘学与东方宗教的流行，共同塑造了向内转的艺术取向。',
-  from:['romanticism','pre-raphaelite','post-impressionism'], to:['art-nouveau','expressionism','surrealism'],
+  from:['romanticism','pre-raphaelite','post-impressionism','indian-painting'], to:['art-nouveau','expressionism','surrealism'],
   terms:[
     {t:'致命女性', d:'Femme fatale，诱惑并导致男性毁灭的女性形象母题'},
     {t:'颓废派', d:'Decadence，推崇人工、病态与感官极致的世纪末美学倾向'},
@@ -178,7 +178,7 @@ window.AH_DATA.push(
     {title:'圣家族大教堂', titleEn:'Sagrada Família', year:'1882–', artist:'高迪', where:'巴塞罗那'}
   ],
   context:'工业化带来的产品粗劣促使设计改革，万国博览会则为新风格提供了国际舞台。日本开国后浮世绘大量流入欧洲，成为形式革新的直接资源。中产阶级消费能力上升，海报、杂志与百货商店催生了商业视觉的巨大需求。',
-  from:['symbolism','pre-raphaelite','ukiyo-e'], to:['art-deco','bauhaus','expressionism'],
+  from:['symbolism','pre-raphaelite','ukiyo-e','indian-painting'], to:['art-deco','bauhaus','expressionism'],
   terms:[
     {t:'鞭击线条', d:'Whiplash line，如鞭子挥动般富有弹性的长S曲线'},
     {t:'分离派', d:'Secession，维也纳艺术家脱离保守协会另组的团体'},
@@ -252,7 +252,7 @@ window.AH_DATA.push(
     {title:'拥抱', titleEn:'The Embrace', year:'1917', artist:'席勒', where:'维也纳美景宫'}
   ],
   context:'德意志帝国快速工业化与城市化造成传统生活瓦解，尼采哲学与弗洛伊德的心理学为向内探索提供语言。一战的巨大创伤彻底改变了这代人的世界观，战后魏玛共和国的动荡与通胀则催生了更为激烈的社会批判艺术。纳粹上台后将其定为堕落艺术加以清除。',
-  from:['post-impressionism','symbolism','fauvism'], to:['abstract-art','social-realism','abstract-expressionism'],
+  from:['post-impressionism','symbolism','fauvism'], to:['abstract-art','social-realism','abstract-expressionism','neue-sachlichkeit'],
   terms:[
     {t:'桥社', d:'Die Brücke，1905年成立于德累斯顿的表现主义团体'},
     {t:'青骑士', d:'Der Blaue Reiter，1911年慕尼黑成立，倾向抽象与精神性'},
@@ -289,7 +289,7 @@ window.AH_DATA.push(
     {title:'格尔尼卡', titleEn:'Guernica', year:'1937', artist:'毕加索', where:'马德里索菲亚王后博物馆'}
   ],
   context:'20世纪初非西方艺术大量进入欧洲，伊比利亚与非洲雕刻的几何简化给了毕加索直接冲击。相对论与四维空间的通俗讨论、以及摄影对连续运动的分解，都在质疑单一视点的绝对性。康韦勒等画商为这类难懂的实验提供了经济支持。',
-  from:['post-impressionism','african-art'], to:['futurism','constructivism','abstract-art','dada'],
+  from:['post-impressionism','african-art','oceanic-art'], to:['futurism','constructivism','abstract-art','dada'],
   terms:[
     {t:'分析立体主义', d:'Analytic Cubism，1909至1912年拆解形体、色彩极简的阶段'},
     {t:'综合立体主义', d:'Synthetic Cubism，1912年后引入拼贴与明确色彩的阶段'},
@@ -361,7 +361,7 @@ window.AH_DATA.push(
     {title:'L.H.O.O.Q.', titleEn:'L.H.O.O.Q.', year:'1919', artist:'杜尚', where:'多处收藏'}
   ],
   context:'一战的机械化屠杀摧毁了对理性与进步的信念，中立国瑞士成为流亡艺术家的聚集地。战后德国的政治动荡使达达在柏林高度政治化，而印刷媒体与广告图像的普及为摄影拼贴提供了原材料。',
-  from:['cubism','futurism'], to:['surrealism','pop-art','contemporary'],
+  from:['cubism','futurism'], to:['surrealism','pop-art','contemporary','neue-sachlichkeit','fluxus','conceptual-art'],
   terms:[
     {t:'现成品', d:'Readymade，将工业制成品经艺术家选择后作为作品呈现'},
     {t:'摄影拼贴', d:'Photomontage，剪取并重组照片以制造新意义的手法'},
@@ -438,7 +438,7 @@ window.AH_DATA.push(
     {title:'雨后的欧洲', titleEn:'Europe After the Rain II', year:'1940–42', artist:'恩斯特', where:'哈特福德沃兹沃思学会'}
   ],
   context:'弗洛伊德的无意识理论在两战之间广泛传播，为艺术提供了新的正当性来源。一战后对理性文明的怀疑延续了达达的批判，而布勒东的组织化领导与宣言写作则把松散的倾向变成了有纲领的国际运动。二战使成员流散至美洲，运动的影响随之全球化。',
-  from:['dada','symbolism','expressionism'], to:['abstract-expressionism','contemporary','pop-art'],
+  from:['dada','symbolism','expressionism','neue-sachlichkeit'], to:['abstract-expressionism','contemporary','pop-art'],
   terms:[
     {t:'自动主义', d:'Automatism，让手在无意识状态下自由运动以绕过理性控制'},
     {t:'拓印法', d:'Frottage，将纸覆于粗糙表面摩擦取纹，从随机肌理生成形象'},

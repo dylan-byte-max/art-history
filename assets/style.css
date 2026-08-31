@@ -372,3 +372,8 @@ button{font-family:inherit;cursor:pointer}
 .howto ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px}
 .howto li{font-size:13px;line-height:1.7;color:var(--ink2)}
 .howto li b{color:var(--ink);font-weight:600}
+
+/* 筛选标签上的计数（弱化，用于判断该点哪个地域） */
+.chip-n{margin-left:6px;font-size:11px;color:var(--ink3);opacity:.75}
+.chip.on .chip-n{color:rgba(255,255,255,.8);opacity:1}
+.chip[role="button"]{display:inline-flex;align-items:center;user-select:none}

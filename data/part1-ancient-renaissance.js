@@ -60,7 +60,7 @@ window.AH_DATA.push(
     {title:'米洛的维纳斯', titleEn:'Venus de Milo', year:'约前130–前100', artist:'安提俄克的亚历山德罗斯', where:'卢浮宫'}
   ],
   context:'城邦制度与公民身份培育出人本主义思想，"人是万物的尺度"直接支撑了以人体为核心的艺术。奥林匹亚竞技会让裸体成为荣耀而非羞耻，哲学与几何学的发展则提供了推导理想比例的方法论工具。',
-  from:['ancient-egypt'], to:['ancient-rome','renaissance-high','neoclassicism'],
+  from:['ancient-egypt'], to:['ancient-rome','renaissance-high','neoclassicism','buddhist-art-asia'],
   terms:[
     {t:'对偶式平衡', d:'Contrapposto，重心落于一腿、髋肩反向扭转的站姿，使人体产生自然重量感'},
     {t:'古风微笑', d:'Archaic smile，前6世纪雕像嘴角上扬的程式化表情，用以暗示生命力'},
@@ -271,7 +271,7 @@ window.AH_DATA.push(
     {title:'收割者', titleEn:'The Harvesters', year:'1565', artist:'勃鲁盖尔', where:'纽约大都会博物馆'}
   ],
   context:'佛兰德斯的纺织与贸易财富培育出富裕市民阶层，他们订购小型祭坛画与肖像用于私人虔敬，这与意大利的公共大型委托截然不同。北方的虔敬运动强调个人与神的直接关系，也促成了对具体细节与日常场景的宗教化关注。',
-  from:['gothic'], to:['dutch-golden-age','baroque'],
+  from:['gothic'], to:['dutch-golden-age','baroque','flemish-baroque'],
   terms:[
     {t:'罩染', d:'Glazing，以半透明色层反复覆盖以获得深度与光泽的油画技法'},
     {t:'伪装的象征主义', d:'Disguised symbolism，象征意义隐藏于写实日常物件中的表现策略'},
@@ -382,7 +382,7 @@ window.AH_DATA.push(
     {title:'基督治愈盲人', titleEn:'Christ Healing the Blind', year:'约1570', artist:'埃尔·格列柯', where:'纽约大都会博物馆'}
   ],
   context:'1527年罗马之劫与宗教改革冲击了文艺复兴的乐观信念，宗教与政治的双重危机催生了不安的审美。同时宫廷成为主要赞助方，收藏家追求奇巧、难度与智性游戏，使刻意违规的手法获得市场。',
-  from:['renaissance-high'], to:['baroque'],
+  from:['renaissance-high'], to:['baroque','spanish-golden-age'],
   terms:[
     {t:'蛇形构图', d:'Figura serpentinata，人体呈螺旋扭转的姿态，追求动感与优雅'},
     {t:'maniera', d:'意为"手法"，指对技巧本身的欣赏，样式主义的核心趣味'},

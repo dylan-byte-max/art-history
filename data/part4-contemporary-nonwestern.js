@@ -28,7 +28,7 @@ window.AH_DATA.push(
     {title:'女人一号', titleEn:'Woman I', year:'1950–52', artist:'德·库宁', where:'纽约现代艺术博物馆'}
   ],
   context:'二战使欧洲艺术中心瓦解，超现实主义流亡者把自动主义带到纽约。美国联邦艺术计划培养了一批画家，战后经济繁荣与冷战文化竞争则让抽象艺术被作为自由社会的象征加以推广。格林伯格等批评家的理论建构与佩吉·古根海姆等收藏家的支持共同完成了体制化。',
-  from:['surrealism','expressionism','abstract-art'], to:['minimalism','pop-art','contemporary'],
+  from:['surrealism','expressionism','abstract-art'], to:['minimalism','pop-art','contemporary','neo-expressionism'],
   terms:[
     {t:'行动绘画', d:'Action painting，强调创作过程与身体动作痕迹的绘画观念'},
     {t:'全面性构图', d:'All-over composition，画面无主次中心、各处强度均等的布局'},
@@ -63,7 +63,7 @@ window.AH_DATA.push(
     {title:'溺水的女孩', titleEn:'Drowning Girl', year:'1963', artist:'利希滕斯坦', where:'纽约现代艺术博物馆'}
   ],
   context:'战后美国进入大规模消费社会，电视、广告与超市包装构成了新的视觉环境。抽象表现主义的英雄姿态在年轻一代看来已成陈套，达达的现成品观念被重新发现。画廊体系与媒体的高速运转也让艺术家的公众形象成为作品的一部分。',
-  from:['dada','surrealism','abstract-expressionism'], to:['contemporary'],
+  from:['dada','surrealism','abstract-expressionism'], to:['contemporary','conceptual-art','neo-expressionism'],
   terms:[
     {t:'丝网印刷', d:'Silkscreen，可重复套印的制版技术，波普借以取消手工独一性'},
     {t:'本戴点', d:'Ben-Day dots，商业印刷的网点，利希滕斯坦将其手绘放大'},
@@ -99,7 +99,7 @@ window.AH_DATA.push(
     {title:'理发店的旗帜', titleEn:'Die Fahne hoch!', year:'1959', artist:'斯特拉', where:'纽约惠特尼美术馆'}
   ],
   context:'战后美国工业生产能力与新材料普及使工厂委托制作成为可能。艺术界对抽象表现主义的英雄式主体性产生反感，转向客观与去个人化。格林伯格式的形式主义批评推动了不断还原的逻辑，而这一逻辑在极少主义处遭遇了自身的边界。',
-  from:['abstract-art','abstract-expressionism'], to:['contemporary'],
+  from:['abstract-art','abstract-expressionism'], to:['contemporary','conceptual-art','fluxus'],
   terms:[
     {t:'特定物体', d:'Specific object，贾德用以指称既非绘画亦非雕塑的实体作品'},
     {t:'剧场性', d:'Theatricality，弗雷德批评极少主义依赖观者在场与情境的性质'},
@@ -137,7 +137,7 @@ window.AH_DATA.push(
     {title:'如何向死兔子解释绘画', titleEn:'How to Explain Pictures to a Dead Hare', year:'1965', artist:'博伊斯', where:'行为作品，记录存多处'}
   ],
   context:'后现代思潮质疑宏大叙事与单一进步逻辑，后殖民与女性主义理论重写了艺术史的评价标准。双年展与艺术博览会体系的扩张、全球资本的介入、以及数字技术与互联网的普及，共同造就了多中心、多媒介、高度理论化的当代格局。',
-  from:['pop-art','minimalism','abstract-expressionism'], to:[],
+  from:['pop-art','minimalism','abstract-expressionism','conceptual-art','fluxus','neo-expressionism','aboriginal-art'], to:[],
   terms:[
     {t:'社会雕塑', d:'Social sculpture，博伊斯提出的以社会本身为塑造对象的艺术观'},
     {t:'体制批判', d:'Institutional critique，以美术馆与艺术体制为分析对象的实践'},
@@ -179,7 +179,7 @@ window.AH_DATA.push(
     {title:'照夜白', titleEn:'Night-Shining White', year:'约750', artist:'韩干', where:'纽约大都会博物馆'}
   ],
   context:'科举制度培养了大量兼通文史书画的士人阶层，他们既是创作者也是品评者，使绘画的价值标准由文人趣味主导而非宫廷或市场。禅宗与道家思想提供了留白、简淡与自然观的哲学基础，宋代画院的建立与元代文人的隐逸处境则分别塑造了院体与文人画两条脉络。',
-  from:[], to:['japanese-painting','ukiyo-e'],
+  from:['buddhist-art-asia'], to:['japanese-painting','ukiyo-e','korean-painting'],
   terms:[
     {t:'气韵生动', d:'谢赫六法之首，指画面透出的生命节奏与精神状态'},
     {t:'三远法', d:'郭熙提出的高远、深远、平远三种山水空间处理方式'},
@@ -218,7 +218,7 @@ window.AH_DATA.push(
     {title:'红白梅图屏风', titleEn:'Red and White Plum Blossoms', year:'约1712–1716', artist:'尾形光琳', where:'热海MOA美术馆'}
   ],
   context:'与中国大陆的持续交流提供了技法与题材的基础，佛教寺院与贵族宫廷是早期主要赞助方。武家政权兴起后城郭建筑需要大幅装饰画，桃山时代的黄金屏障画即由此而来。江户时代町人经济繁荣与锁国政策共同促成了本土风格的高度成熟与画派多元化。',
-  from:['chinese-painting'], to:['ukiyo-e','art-nouveau','impressionism'],
+  from:['chinese-painting','korean-painting','buddhist-art-asia'], to:['ukiyo-e','art-nouveau','impressionism'],
   terms:[
     {t:'大和绘', d:'Yamato-e，以日本题材与本土审美为特征的绘画传统'},
     {t:'襖绘', d:'Fusuma-e，绘于室内隔扇上的大幅装饰绘画'},
@@ -295,7 +295,7 @@ window.AH_DATA.push(
     {title:'塞利米耶清真寺', titleEn:'Selimiye Mosque', year:'1568–1575', artist:'锡南', where:'土耳其埃迪尔内'}
   ],
   context:'伊斯兰世界横跨欧亚非，继承了拜占庭、萨珊与印度的工艺传统并加以整合。宗教对具象的审慎态度将创造力导向几何、书法与纹样，而数学与光学的高度发展为图案推演提供了工具。宫廷手抄本作坊制度则支撑了细密画的精细分工与长期传承。',
-  from:[], to:['renaissance-early','art-nouveau'],
+  from:[], to:['renaissance-early','art-nouveau','indian-painting'],
   terms:[
     {t:'阿拉贝斯克', d:'Arabesque，按几何规律无限缠绕的植物纹样'},
     {t:'细密画', d:'Miniature，手抄本中的精细插图，多为世俗题材'},

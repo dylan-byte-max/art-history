@@ -260,7 +260,9 @@ function renderPFilters(){
     r.appendChild(el('div','flabel',label));
     var c=el('div','fchips');
     items.forEach(function(v){
-      var ch=el('button','chip'+(PF[key]===v.val?' on':''),esc(v.label));
+      var ch=el('div','chip'+(PF[key]===v.val?' on':''),
+                v.html? v.label : esc(v.label));
+      ch.setAttribute('role','button');
       ch.addEventListener('click',function(){
         PF[key]=(PF[key]===v.val?null:v.val); renderPFilters(); renderPainters();
       });
@@ -276,18 +278,36 @@ function renderPFilters(){
   sts.sort(function(a,b){ return (byId[a]?byId[a].start:0)-(byId[b]?byId[b].start:0); });
   row('流派',sts.map(function(s){return {label:byId[s]?byId[s].name:s,val:s};}),'style');
 
-  var regs=[]; PT.forEach(function(p){
-    var r=(p.region||'').split('·')[0].trim();
-    if(r && regs.indexOf(r)<0) regs.push(r);
+  var regs={};
+  PT.forEach(function(p){
+    ptRegions(p).forEach(function(r){ regs[r]=(regs[r]||0)+1; });
   });
-  row('地域',regs.map(function(r){return {label:r,val:r};}),'region');
+  var RO=(window.AH_REGION&&window.AH_REGION.order)||[];
+  var regList=Object.keys(regs).sort(function(a,b){
+    var ia=RO.indexOf(a), ib=RO.indexOf(b);
+    if(ia<0) ia=999; if(ib<0) ib=999;
+    if(ia!==ib) return ia-ib;
+    return a.localeCompare(b,'zh');
+  });
+  row('地域',regList.map(function(r){
+    return {label:r+'<span class="chip-n">'+regs[r]+'</span>', val:r, html:true};
+  }),'region');
+}
+
+/* 一位画家可能横跨多个地域（迁徙路径），全部返回，
+   使「布鲁塞尔→法国·巴黎」在「比利时」和「法国」下都能被筛到。 */
+function ptRegions(p){
+  if(p._regs) return p._regs;
+  p._regs = (window.AH_REGION ? window.AH_REGION.of(p.region) : [])
+            || [];
+  return p._regs;
 }
 
 function ptPassing(){
   return PT.filter(function(p){
     if(PF.era && ptEra(p)!==PF.era) return false;
     if(PF.style && (p.styles||[]).indexOf(PF.style)<0) return false;
-    if(PF.region && (p.region||'').indexOf(PF.region)!==0) return false;
+    if(PF.region && ptRegions(p).indexOf(PF.region)<0) return false;
     return true;
   });
 }
@@ -456,13 +476,37 @@ function uniq(key){
   });
   return out;
 }
-function regionTop(){
-  var out=[];
-  D.forEach(function(s){
-    var r=(s.region||'').split('·')[0].trim();
-    if(r && out.indexOf(r)<0) out.push(r);
-  });
+/* 流派的地域是大洲级别，但同一含义有多种写法
+   （「美洲与欧洲」「欧美」「欧洲与美洲」），拆成原子大洲后去重，
+   一个流派可归属多个大洲。 */
+var CONTINENTS=['欧洲','美洲','亚洲','东亚','南亚','非洲','大洋洲'];
+function styleRegions(s){
+  if(s._regs) return s._regs;
+  var raw=(s.region||'').split('·')[0].trim();
+  var out=[], seen={};
+  function push(v){ if(v&&!seen[v]){seen[v]=1;out.push(v);} }
+  if(raw==='全球'){ CONTINENTS.forEach(push); }
+  else if(raw==='欧美'){ push('欧洲'); push('美洲'); }
+  else if(raw==='北美'){ push('美洲'); }
+  else {
+    raw.replace(/[与、,，]/g,'|').split('|').forEach(function(part){
+      var t=part.trim();
+      if(t==='欧美'){ push('欧洲'); push('美洲'); return; }
+      if(t==='北美'){ push('美洲'); return; }
+      if(CONTINENTS.indexOf(t)>=0){ push(t); return; }
+      // 兜底：片段里包含某个大洲名
+      for(var i=0;i<CONTINENTS.length;i++){
+        if(t.indexOf(CONTINENTS[i])>=0){ push(CONTINENTS[i]); return; }
+      }
+    });
+  }
+  s._regs=out;
   return out;
+}
+function regionTop(){
+  var cnt={};
+  D.forEach(function(s){ styleRegions(s).forEach(function(r){ cnt[r]=(cnt[r]||0)+1; }); });
+  return CONTINENTS.filter(function(c){ return cnt[c]; });
 }
 
 function renderFilters(){
@@ -489,7 +533,7 @@ function renderFilters(){
 function stylesPassing(){
   return D.filter(function(s){
     if(F.era && s.era!==F.era) return false;
-    if(F.region && (s.region||'').indexOf(F.region)!==0) return false;
+    if(F.region && styleRegions(s).indexOf(F.region)<0) return false;
     if(F.subject && (s.subjects||[]).indexOf(F.subject)<0) return false;
     if(F.medium && (s.medium||[]).indexOf(F.medium)<0) return false;
     if(F.style && s.id!==F.style) return false;

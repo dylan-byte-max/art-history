@@ -88,15 +88,35 @@ function syncAxis(){
   ax.style.transform='translateX('+(-sc.scrollLeft)+'px)';
 }
 
+/* 表头在窄屏会换行变高（62px → 106px），若坐标轴的 sticky top 写死 62px，
+   移动端就会被表头压在下面看不见。所以实测表头高度写进 CSS 变量，
+   并在 resize / 转屏 / 字体载入后重测。 */
+function syncHeadHeight(){
+  var head=document.querySelector('.site-head');
+  if(!head) return;
+  var h=Math.round(head.getBoundingClientRect().height);
+  if(h>0) document.documentElement.style.setProperty('--head-h', h+'px');
+}
+
 function bindAxisSync(){
   var sc=$('tlScroll');
-  if(!sc) return;
   var raf=null;
-  sc.addEventListener('scroll',function(){
-    if(raf) return;
-    raf=requestAnimationFrame(function(){ raf=null; syncAxis(); });
-  },{passive:true});
-  window.addEventListener('resize',syncAxis);
+  if(sc){
+    sc.addEventListener('scroll',function(){
+      if(raf) return;
+      raf=requestAnimationFrame(function(){ raf=null; syncAxis(); });
+    },{passive:true});
+  }
+  var rraf=null;
+  function onResize(){
+    if(rraf) return;
+    rraf=requestAnimationFrame(function(){ rraf=null; syncHeadHeight(); syncAxis(); });
+  }
+  window.addEventListener('resize',onResize);
+  window.addEventListener('orientationchange',function(){ setTimeout(onResize,220); });
+  // 衬线字体载入后表头高度可能变化，字体就绪时再测一次
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(syncHeadHeight);
+  syncHeadHeight();
 }
 
 function renderTimeline(){

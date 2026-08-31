@@ -6,8 +6,17 @@ var MET = {};           // 流派id -> 作品数组（异步载入）
 var byId = {};
 D.forEach(function(s){ byId[s.id]=s; });
 
+// 时期泳道的显示顺序：先西方主线（按时序连贯），再平行的非西方传统。
+// 不用起始年自动排序，否则「东亚传统」「非西方传统」会插进西方主线中间把脉络切断。
+var ERA_ORDER = [
+  '古代文明','中世纪','文艺复兴','巴洛克与洛可可','19世纪','现代主义','战后与当代',
+  '东亚传统','非西方传统'
+];
 var ERAS = [];
-D.forEach(function(s){ if(ERAS.indexOf(s.era)<0) ERAS.push(s.era); });
+ERA_ORDER.forEach(function(e){ if(D.some(function(s){return s.era===e;})) ERAS.push(e); });
+D.forEach(function(s){ if(ERAS.indexOf(s.era)<0) ERAS.push(s.era); });  // 兜底：新增未列入的时期
+// 西方主线与平行传统的分界，用于在时间轴上插入分隔说明
+var PARALLEL_ERAS = {'东亚传统':1,'非西方传统':1};
 var ERA_COLORS = ['#8a5a3c','#7a6a9c','#2e6b8a','#a8642e','#5c7f5a','#9c4a4a','#4a6b8a','#7a5c8a'];
 function eraColor(era){ var i=ERAS.indexOf(era); return ERA_COLORS[i%ERA_COLORS.length]; }
 
@@ -79,32 +88,66 @@ function renderTimeline(){
   });
 
   var body=$('tlBody'); body.innerHTML='';
-  // 贪心分行避免重叠
-  var rows=[];
-  D.filter(function(s){ return !hiddenEras[s.era]; }).forEach(function(s){
-    var x1=xOf(s.start), x2=xOf(s.end), w=Math.max(x2-x1,96);
-    var placed=false;
-    for(var i=0;i<rows.length;i++){
-      if(x1 > rows[i]+8){ rows[i]=x1+w; s._row=i; placed=true; break; }
-    }
-    if(!placed){ rows.push(x1+w); s._row=rows.length-1; }
-    s._x=x1; s._w=w;
-  });
-  var nRows=rows.length;
-  for(var r=0;r<nRows;r++) body.appendChild(el('div','tl-row'));
-  var rowEls=body.querySelectorAll('.tl-row');
 
-  D.filter(function(s){ return !hiddenEras[s.era]; }).forEach(function(s){
-    var bar=el('div','tl-bar');
-    bar.style.left=s._x+'px'; bar.style.width=s._w+'px';
-    bar.style.background=eraColor(s.era);
-    bar.dataset.id=s.id;
-    bar.appendChild(el('span','tl-bar-lbl',esc(s.name)));
-    if(s._w>168) bar.appendChild(el('span','tl-bar-yr',esc(s.yearLabel.replace('约','').replace('年',''))));
-    bar.title=s.name+' '+s.yearLabel;
-    bar.addEventListener('click',function(){ openDrawer(s.id); highlightLineage(s.id); });
-    bar.addEventListener('mouseenter',function(){ highlightLineage(s.id); });
-    rowEls[s._row].appendChild(bar);
+  // 按时期分带：每个时期一个泳道，带内再贪心分行避免重叠。
+  // 这样「同一带 = 同一时期」有明确语义，而不是随机塞空位。
+  var parallelMarked=false;
+  ERAS.forEach(function(era){
+    if(hiddenEras[era]) return;
+    var list=D.filter(function(s){ return s.era===era; })
+              .slice().sort(function(a,b){ return a.start-b.start; });
+    if(!list.length) return;
+
+    // 进入平行传统区之前插一条分隔说明
+    if(PARALLEL_ERAS[era] && !parallelMarked){
+      parallelMarked=true;
+      var sep=el('div','tl-sep');
+      sep.appendChild(el('span','tl-sep-lbl','以下为与西方主线并行发展的传统 · 横向年代对齐，可直接比较同一时间东西方在做什么'));
+      body.appendChild(sep);
+    }
+
+    // 带内分行。最小宽度比全局布局时更小、间隙更紧，
+    // 因为分带后行数会成倍增加，需要让同一带内尽量共行以控制页面高度
+    var rows=[];
+    list.forEach(function(s){
+      var x1=xOf(s.start), x2=xOf(s.end), w=Math.max(x2-x1,74);
+      var placed=false;
+      for(var i=0;i<rows.length;i++){
+        if(x1 > rows[i]+4){ rows[i]=x1+w; s._row=i; placed=true; break; }
+      }
+      if(!placed){ rows.push(x1+w); s._row=rows.length-1; }
+      s._x=x1; s._w=w;
+    });
+
+    var band=el('div','tl-band');
+    band.dataset.era=era;
+
+    var head=el('div','tl-band-head');
+    var dot=el('span','tl-band-dot'); dot.style.background=eraColor(era);
+    head.appendChild(dot);
+    head.appendChild(el('span','tl-band-name',esc(era)));
+    head.appendChild(el('span','tl-band-count',list.length+' 个'));
+    band.appendChild(head);
+
+    var lanes=el('div','tl-band-lanes');
+    for(var r=0;r<rows.length;r++) lanes.appendChild(el('div','tl-row'));
+    var rowEls=lanes.querySelectorAll('.tl-row');
+
+    list.forEach(function(s){
+      var bar=el('div','tl-bar');
+      bar.style.left=s._x+'px'; bar.style.width=s._w+'px';
+      bar.style.background=eraColor(s.era);
+      bar.dataset.id=s.id;
+      bar.appendChild(el('span','tl-bar-lbl',esc(s.name)));
+      if(s._w>168) bar.appendChild(el('span','tl-bar-yr',esc(s.yearLabel.replace('约','').replace('年',''))));
+      bar.title=s.name+' '+s.yearLabel;
+      bar.addEventListener('click',function(){ openDrawer(s.id); highlightLineage(s.id); });
+      bar.addEventListener('mouseenter',function(){ highlightLineage(s.id); });
+      rowEls[s._row].appendChild(bar);
+    });
+
+    band.appendChild(lanes);
+    body.appendChild(band);
   });
 }
 

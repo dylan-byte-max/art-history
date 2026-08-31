@@ -149,7 +149,7 @@ window.AH_PAINTERS.push(
 
 {
   id:'elgreco', name:'埃尔·格列柯', nameEn:'El Greco', life:'1541–1614',
-  styles:['mannerism'], region:'克里特→西班牙托莱多', role:'把样式主义推向宗教狂热的异乡人',
+  styles:['mannerism','spanish-golden-age'], region:'克里特→西班牙托莱多', role:'把样式主义推向宗教狂热的异乡人',
   bio:'他生于克里特（当时属威尼斯），受拜占庭圣像画训练，之后到威尼斯学提香的色彩、到罗马看米开朗基罗，最终定居西班牙托莱多。这条路径造就了美术史上最难归类的个人风格：拜占庭的非写实空间感、威尼斯的色彩、样式主义的人体拉长，加上西班牙反宗教改革的宗教狂热。他的人物像火焰一样向上窜动，色彩是冷银、酸黄与深红的组合，空间常常完全不合逻辑。生前在西班牙以外几乎无人知晓，二十世纪初被表现主义者和毕加索重新发现，才获得今天的地位。',
   works:[
     {title:'奥尔加斯伯爵的葬礼', titleEn:'The Burial of the Count of Orgaz', year:'1586', where:'托莱多圣多默堂',
@@ -209,7 +209,7 @@ window.AH_PAINTERS.push(
 
 {
   id:'velazquez', name:'迭戈·委拉斯开兹', nameEn:'Diego Velázquez', life:'1599–1660',
-  styles:['baroque'], region:'西班牙·塞维利亚与马德里', role:'冷静观察者，绘画自反性的开创者',
+  styles:['spanish-golden-age','baroque'], region:'西班牙·塞维利亚与马德里', role:'冷静观察者，绘画自反性的开创者',
   bio:'委拉斯开兹三十几年任腓力四世的宫廷画家，画国王、王后、公主、侏儒、小丑、织工。他的态度是罕见的平等——画侏儒与画国王用同样冷静的注视，不谄媚也不猎奇。技法上他走了与卡拉瓦乔相反的路：不用强对比，而用极其精微的灰调过渡与松散的笔触，站近了看是一堆看似随意的色斑，退开则形体与空气一起浮现。马奈称他为"画家中的画家"，印象派把他视为直接先驱。',
   works:[
     {title:'宫娥', titleEn:'Las Meninas', year:'1656', where:'马德里普拉多博物馆',
@@ -223,7 +223,7 @@ window.AH_PAINTERS.push(
 
 {
   id:'rubens', name:'彼得·保罗·鲁本斯', nameEn:'Peter Paul Rubens', life:'1577–1640',
-  styles:['baroque'], region:'佛兰德斯·安特卫普', role:'北方巴洛克的能量引擎',
+  styles:['flemish-baroque','baroque'], region:'佛兰德斯·安特卫普', role:'北方巴洛克的能量引擎',
   bio:'鲁本斯是巴洛克旋转动势的化身，也是艺术史上最成功的经营者。他在安特卫普经营大型工坊，学徒与合作者众多（凡·戴克曾在其门下），能同时承接遍及欧洲宫廷的巨幅订单；他还通晓六种语言，兼任外交使节，被西班牙与英国双双授予爵位。绘画上他把提香的色彩、米开朗基罗的体量与佛兰德斯的写实结合，发展出一套以对角线与螺旋组织的动态构图，肉体丰腴、光泽饱满、色彩热烈。他笔下的人体成为"丰满即健康之美"的代名词。',
   works:[
     {title:'劫夺留西波斯的女儿', titleEn:'The Rape of the Daughters of Leucippus', year:'约1618', where:'慕尼黑老绘画陈列馆',

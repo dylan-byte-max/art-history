@@ -48,8 +48,15 @@
       </div>
       <div class="era-legend" id="eraLegend"></div>
     </div>
-    <div class="tl-scroll">
-      <div class="tl-axis" id="tlAxis"></div>
+    <!-- 坐标轴必须放在 overflow 容器「之外」：
+         若作为 .tl-scroll 的子元素，其 sticky 会被父级滚动上下文限制而失效。
+         横向位置由 JS 同步 .tl-scroll 的 scrollLeft。 -->
+    <div class="tl-axis-sticky" id="tlAxisSticky">
+      <div class="tl-axis-clip">
+        <div class="tl-axis" id="tlAxis"></div>
+      </div>
+    </div>
+    <div class="tl-scroll" id="tlScroll">
       <div class="tl-body" id="tlBody"></div>
     </div>
     <div class="lineage-panel">

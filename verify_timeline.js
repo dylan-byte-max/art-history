@@ -2,9 +2,12 @@
 const fs = require('fs');
 
 global.window = {};
-['part1-ancient-renaissance','part2-baroque-19c','part3-modernism',
- 'part4-contemporary-nonwestern','part5-supplements','part6-classicism']
-  .forEach(f => require('./data/' + f + '.js'));
+// 数据文件列表从 index.html 解析，避免硬编码导致新增数据文件被漏测
+const htmlSrc = fs.readFileSync('./index.html', 'utf8');
+const dataFiles = [...htmlSrc.matchAll(/data\/(part[\w-]+)\.js/g)].map(m => m[1]);
+if (!dataFiles.length) throw new Error('未能从 index.html 解析出 part*.js 列表');
+dataFiles.forEach(f => require('./data/' + f + '.js'));
+console.log('已载入数据文件:', dataFiles.length, '个 →', dataFiles.join(', '));
 const D = window.AH_DATA.slice().sort((a,b) => a.start - b.start);
 
 // 从 app.js 中提取实际使用的 ERA_ORDER 与分行参数，确保测试和实现不脱节

@@ -35,6 +35,7 @@ QUERIES = {
     'dutch-golden-age':   [('Rembrandt', 'artist'), ('Vermeer', 'artist'), ('Frans Hals', 'artist'), ('Jacob van Ruisdael', 'artist'), ('Jan Steen', 'artist')],
     'rococo':             [('Fragonard', 'artist'), ('Boucher', 'artist'), ('Watteau', 'artist'), ('Chardin', 'artist'), ('Vigée Le Brun', 'artist')],
     'neoclassicism':      [('Jacques Louis David', 'artist'), ('Ingres', 'artist'), ('Canova', 'artist')],
+    'classicism':         [('Poussin', 'artist'), ('Claude Lorrain', 'artist'), ('Annibale Carracci', 'artist'), ('Guido Reni', 'artist'), ('Philippe de Champaigne', 'artist')],
     'romanticism':        [('Delacroix', 'artist'), ('Goya', 'artist'), ('Turner', 'artist'), ('Géricault', 'artist'), ('Constable', 'artist')],
     'academic-art':       [('Sargent', 'artist'), ('Bouguereau', 'artist'), ('Gérôme', 'artist'), ('Whistler', 'artist')],
     'realism':            [('Courbet', 'artist'), ('Millet', 'artist'), ('Daumier', 'artist'), ('Rosa Bonheur', 'artist'), ('Corot', 'artist')],

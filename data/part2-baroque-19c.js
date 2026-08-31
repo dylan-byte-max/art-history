@@ -31,7 +31,7 @@ window.AH_DATA.push(
     {title:'劫夺萨宾妇女', titleEn:'The Abduction of the Sabine Women', year:'约1633', artist:'普桑', where:'纽约大都会博物馆'}
   ],
   context:'特伦特会议后天主教会推动反宗教改革，明确要求艺术承担感染信众的宣教职能。绝对君主制的兴起同样需要壮丽的视觉修辞，凡尔赛与罗马教廷成为两大赞助中心，科学革命带来的对光学与运动的兴趣也渗入画面。',
-  from:['renaissance-high','mannerism','venetian'], to:['rococo','dutch-golden-age','romanticism','classicism'],
+  from:['renaissance-high','mannerism','venetian'], to:['rococo','dutch-golden-age','romanticism','classicism','spanish-golden-age','flemish-baroque'],
   terms:[
     {t:'地窖光', d:'Tenebrism，以近乎全黑的背景衬托集中强光的极端明暗手法'},
     {t:'整体艺术', d:'Bel composto，贝尔尼尼式将建筑雕塑绘画光线融为一体的观念'},
@@ -69,7 +69,7 @@ window.AH_DATA.push(
     {title:'犹太新娘', titleEn:'The Jewish Bride', year:'约1667', artist:'伦勃朗', where:'阿姆斯特丹国立博物馆'}
   ],
   context:'脱离西班牙独立后的荷兰共和国凭海上贸易积累巨额财富，加尔文教会拒绝教堂图像，宫廷赞助又不存在，绘画因此转为面向市民的商品。画家加入行会、通过画商与集市销售，市场竞争推动了题材细分与技术专精。',
-  from:['northern-renaissance','baroque'], to:['realism','impressionism'],
+  from:['northern-renaissance','baroque'], to:['realism','impressionism','hudson-river-school'],
   terms:[
     {t:'虚空派', d:'Vanitas，以骷髅、残烛、腐果暗示生命短暂的静物类型'},
     {t:'风俗画', d:'Genre painting，描绘日常生活场景的绘画类别'},
@@ -106,7 +106,7 @@ window.AH_DATA.push(
     {title:'玛丽·艾米莉·库瓦涅像', titleEn:'Marie Emilie Coignet de Courson', year:'约1769', artist:'弗拉戈纳尔', where:'纽约大都会博物馆'}
   ],
   context:'路易十四去世后摄政时期风气松动，贵族重返巴黎经营私人宅邸社交，艺术赞助从国家转向沙龙与情妇圈层。启蒙运动初期对感性与私人幸福的肯定给了这种趣味一层思想外衣，但同一思潮后期的道德批判也终结了它。',
-  from:['baroque','venetian','classicism'], to:['neoclassicism'],
+  from:['baroque','venetian','classicism','flemish-baroque'], to:['neoclassicism'],
   terms:[
     {t:'雅宴画', d:'Fête galante，描绘贵族男女在园林中游乐社交的画种'},
     {t:'岩石贝饰', d:'Rocaille，模仿贝壳与岩石肌理的不对称装饰纹样'},
@@ -182,7 +182,7 @@ window.AH_DATA.push(
     {title:'花篮', titleEn:'Basket of Flowers', year:'1848–49', artist:'德拉克洛瓦', where:'纽约大都会博物馆'}
   ],
   context:'法国大革命的余波与拿破仑战争造成剧烈动荡，理性许诺的秩序并未到来，反使人们转向情感与个体经验。工业革命带来的环境剧变催生了对荒野与过往的怀想，民族主义兴起也让各国艺术家寻找本土的历史与传说。',
-  from:['baroque','venetian','neoclassicism'], to:['realism','impressionism','symbolism','expressionism'],
+  from:['baroque','venetian','neoclassicism'], to:['realism','impressionism','symbolism','expressionism','hudson-river-school'],
   terms:[
     {t:'崇高', d:'The Sublime，面对超越人类尺度的力量时产生的恐惧与快感的混合体验'},
     {t:'互补色并置', d:'将色轮相对的两色相邻放置，使彼此在视觉上更为鲜活'},
@@ -217,7 +217,7 @@ window.AH_DATA.push(
     {title:'黄色房间', titleEn:'The Yellow Room', year:'约1883–84', artist:'惠斯勒', where:'纽约大都会博物馆'}
   ],
   context:'美术学院与官方沙龙垄断了艺术家的成名通道与市场，评审标准由资深院士掌握。第二帝国时期的新兴资产阶级偏好技术精湛、题材体面的作品，殖民扩张则催生了大量东方主义想象。1863年落选者沙龙标志着体系权威开始瓦解。',
-  from:['neoclassicism','classicism'], to:['impressionism','realism'],
+  from:['neoclassicism','classicism','flemish-baroque'], to:['impressionism','realism'],
   terms:[
     {t:'沙龙', d:'Salon，法兰西学院主办的官方年度展览，决定艺术家的市场地位'},
     {t:'罗马大奖', d:'Prix de Rome，学院最高奖学金，获奖者可赴罗马深造'},
@@ -253,7 +253,7 @@ window.AH_DATA.push(
     {title:'三等车厢', titleEn:'The Third-Class Carriage', year:'约1862–64', artist:'杜米埃', where:'纽约大都会博物馆'}
   ],
   context:'1848年革命与工业化让阶级问题进入公共视野，摄影术的出现也削弱了绘画的记录职能并促使画家重新思考真实。实证主义思潮推崇观察与事实，孔德与左拉的思想为"如实描绘所见"提供了知识论支撑。',
-  from:['dutch-golden-age','romanticism'], to:['impressionism','social-realism'],
+  from:['dutch-golden-age','romanticism','spanish-golden-age','hudson-river-school'], to:['impressionism','social-realism'],
   terms:[
     {t:'巴比松画派', d:'Barbizon School，聚居枫丹白露林边写生自然的画家群体'},
     {t:'石版画', d:'Lithography，可大量印刷的版画技术，19世纪社会讽刺的主要媒介'},

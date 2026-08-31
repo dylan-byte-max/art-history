@@ -31,7 +31,7 @@ window.AH_DATA.push(
     {title:'劫夺萨宾妇女', titleEn:'The Abduction of the Sabine Women', year:'约1633', artist:'普桑', where:'纽约大都会博物馆'}
   ],
   context:'特伦特会议后天主教会推动反宗教改革，明确要求艺术承担感染信众的宣教职能。绝对君主制的兴起同样需要壮丽的视觉修辞，凡尔赛与罗马教廷成为两大赞助中心，科学革命带来的对光学与运动的兴趣也渗入画面。',
-  from:['renaissance-high','mannerism','venetian'], to:['rococo','dutch-golden-age','romanticism'],
+  from:['renaissance-high','mannerism','venetian'], to:['rococo','dutch-golden-age','romanticism','classicism'],
   terms:[
     {t:'地窖光', d:'Tenebrism，以近乎全黑的背景衬托集中强光的极端明暗手法'},
     {t:'整体艺术', d:'Bel composto，贝尔尼尼式将建筑雕塑绘画光线融为一体的观念'},
@@ -106,7 +106,7 @@ window.AH_DATA.push(
     {title:'玛丽·艾米莉·库瓦涅像', titleEn:'Marie Emilie Coignet de Courson', year:'约1769', artist:'弗拉戈纳尔', where:'纽约大都会博物馆'}
   ],
   context:'路易十四去世后摄政时期风气松动，贵族重返巴黎经营私人宅邸社交，艺术赞助从国家转向沙龙与情妇圈层。启蒙运动初期对感性与私人幸福的肯定给了这种趣味一层思想外衣，但同一思潮后期的道德批判也终结了它。',
-  from:['baroque','venetian'], to:['neoclassicism'],
+  from:['baroque','venetian','classicism'], to:['neoclassicism'],
   terms:[
     {t:'雅宴画', d:'Fête galante，描绘贵族男女在园林中游乐社交的画种'},
     {t:'岩石贝饰', d:'Rocaille，模仿贝壳与岩石肌理的不对称装饰纹样'},
@@ -143,7 +143,7 @@ window.AH_DATA.push(
     {title:'丘比特与普赛克', titleEn:'Psyche Revived by Cupid\'s Kiss', year:'1787–1793', artist:'卡诺瓦', where:'巴黎卢浮宫'}
   ],
   context:'庞贝与赫库兰尼姆的发掘引发全欧古代热，温克尔曼的著作将希腊艺术确立为最高典范。启蒙运动批判贵族奢靡、推崇公民美德，法国大革命与拿破仑帝国则直接将这种风格征用为国家宣传语言。',
-  from:['renaissance-high','ancient-greece','ancient-rome'], to:['romanticism','academic-art'],
+  from:['classicism','ancient-greece','ancient-rome','renaissance-high'], to:['romanticism','academic-art'],
   terms:[
     {t:'高贵的单纯', d:'温克尔曼对希腊艺术的概括，强调节制、静穆与理想化'},
     {t:'浅浮雕式构图', d:'Relief-like composition，人物沿画面平行排列、纵深极浅的布局'},
@@ -217,7 +217,7 @@ window.AH_DATA.push(
     {title:'黄色房间', titleEn:'The Yellow Room', year:'约1883–84', artist:'惠斯勒', where:'纽约大都会博物馆'}
   ],
   context:'美术学院与官方沙龙垄断了艺术家的成名通道与市场，评审标准由资深院士掌握。第二帝国时期的新兴资产阶级偏好技术精湛、题材体面的作品，殖民扩张则催生了大量东方主义想象。1863年落选者沙龙标志着体系权威开始瓦解。',
-  from:['neoclassicism'], to:['impressionism','realism'],
+  from:['neoclassicism','classicism'], to:['impressionism','realism'],
   terms:[
     {t:'沙龙', d:'Salon，法兰西学院主办的官方年度展览，决定艺术家的市场地位'},
     {t:'罗马大奖', d:'Prix de Rome，学院最高奖学金，获奖者可赴罗马深造'},

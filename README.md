@@ -35,6 +35,7 @@ assets/style.css        样式
 data/part1~part8.js     58 个流派的文字内容，按时期与主题分卷
 data/met-images.json    272 张作品图索引（MET objectID + 图片 URL + 元数据）
 data/schemas.js         无公版图流派的 SVG 风格示意图
+data/regions.js         地域归一化：把自由文本 region（含迁徙路径）解析为国家/地区标签
 data/painters-a~n.js    262 位画家档案：生平、定位、代表作与逐幅赏析
 push.py                 通过 GitHub API 批量推送（git push 在部分环境静默失败时使用）
 fetch_met.py            全量抓取 MET 公版作品图
@@ -45,6 +46,7 @@ fetch_new12.py          多流派批量抓图（画家型 / 地域型两种检�
 verify_timeline.js      时间轴分带逻辑静态断言（数据文件列表自 index.html 解析）
 verify_layout.js        布局与 sticky 坐标轴的 CSS 断言
 verify_render.js        用轻量 DOM 桩在 node 中真实执行 app.js，验证渲染与搜索
+verify_regions.js       地域归一化覆盖率与多地域归属断言
 ```
 
 ## 关于图片与版权

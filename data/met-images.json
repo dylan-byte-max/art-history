@@ -4308,5 +4308,115 @@
    "url": "https://www.metmuseum.org/art/collection/search/853449",
    "tags": []
   }
+ ],
+ "classicism": [
+  {
+   "id": 437329,
+   "title": "The Abduction of the Sabine Women",
+   "artist": "Nicolas Poussin",
+   "date": "probably 1633–34",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-29324-001.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/437329"
+  },
+  {
+   "id": 435908,
+   "title": "The Trojan Women Setting Fire to Their Fleet",
+   "artist": "Claude Lorrain (Claude Gellée)",
+   "date": "ca. 1643",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP226145.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/435908"
+  },
+  {
+   "id": 626692,
+   "title": "The Jabach Family",
+   "artist": "Charles Le Brun",
+   "date": "ca. 1660",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP352819.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/626692"
+  },
+  {
+   "id": 435853,
+   "title": "The Coronation of the Virgin",
+   "artist": "Annibale Carracci",
+   "date": "after 1595",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-27033-001.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/435853"
+  },
+  {
+   "id": 437423,
+   "title": "The Immaculate Conception",
+   "artist": "Guido Reni",
+   "date": "1627",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT1138.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/437423"
+  },
+  {
+   "id": 438724,
+   "title": "The Annunciation",
+   "artist": "Philippe de Champaigne",
+   "date": "ca. 1644",
+   "medium": "Oil on oak",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT5656.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/438724"
+  },
+  {
+   "id": 436858,
+   "title": "The Rape of Tamar",
+   "artist": "Eustache Le Sueur",
+   "date": "probably ca. 1640",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT7839.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/436858"
+  },
+  {
+   "id": 435756,
+   "title": "A Classical Landscape",
+   "artist": "Sébastien Bourdon",
+   "date": "probably 1660s",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP123839.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/435756"
+  },
+  {
+   "id": 436836,
+   "title": "Allegory of Music",
+   "artist": "Laurent de La Hyre",
+   "date": "1649",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT1387.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/436836"
+  },
+  {
+   "id": 437326,
+   "title": "Blind Orion Searching for the Rising Sun",
+   "artist": "Nicolas Poussin",
+   "date": "1658",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP148490.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/437326"
+  },
+  {
+   "id": 459190,
+   "title": "Perseus and the Origin of Coral",
+   "artist": "Claude Lorrain (Claude Gellée)",
+   "date": "ca. 1671",
+   "medium": "Black chalk, sepia and black ink, sepia and gray wash heightened with ",
+   "img": "https://images.metmuseum.org/CRDImages/rl/web-large/DP359019.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/459190"
+  },
+  {
+   "id": 442761,
+   "title": "The Sacrifice of Polyxena",
+   "artist": "Charles Le Brun",
+   "date": "1647",
+   "medium": "Oil on canvas",
+   "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP317722.jpg",
+   "url": "https://www.metmuseum.org/art/collection/search/442761"
+  }
  ]
 }

@@ -80,12 +80,32 @@ function renderLegend(){
   });
 }
 
+/* 坐标轴横向跟随：坐标轴不在滚动容器内（否则 sticky 失效），
+   所以要手动把 .tl-scroll 的 scrollLeft 映射成坐标轴的 translateX。 */
+function syncAxis(){
+  var sc=$('tlScroll'), ax=$('tlAxis');
+  if(!sc||!ax) return;
+  ax.style.transform='translateX('+(-sc.scrollLeft)+'px)';
+}
+
+function bindAxisSync(){
+  var sc=$('tlScroll');
+  if(!sc) return;
+  var raf=null;
+  sc.addEventListener('scroll',function(){
+    if(raf) return;
+    raf=requestAnimationFrame(function(){ raf=null; syncAxis(); });
+  },{passive:true});
+  window.addEventListener('resize',syncAxis);
+}
+
 function renderTimeline(){
   var axis=$('tlAxis'); axis.innerHTML='';
   [-3000,-1500,-500,1,500,1000,1300,1500,1600,1700,1800,1850,1900,1930,1960,2000,2026].forEach(function(y){
     var t=el('div','tl-tick', y<0? (Math.abs(y)+' BC') : (y===1?'公元1年':y+''));
     t.style.left=xOf(y)+'px'; axis.appendChild(t);
   });
+  syncAxis();
 
   var body=$('tlBody'); body.innerHTML='';
 
@@ -985,6 +1005,7 @@ function stats(){
 
 /* ============ 启动 ============ */
 renderLegend(); renderTimeline(); renderFilters(); renderPFilters(); fillSelects(); stats();
+bindAxisSync();
 // 画家视图的模式切换与清除
 Array.prototype.forEach.call(document.querySelectorAll('.pmode'),function(b){
   b.addEventListener('click',function(){

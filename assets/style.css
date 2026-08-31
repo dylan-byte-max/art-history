@@ -67,7 +67,7 @@ button{font-family:inherit;cursor:pointer}
    实测结论：若把坐标轴放进 overflow-x 容器内，其 sticky 会被父级滚动上下文限制而失效
    （探针测得滚动后 top 变成 -475，完全没粘住）。
    因此改为：外层 sticky 定位 + .tl-axis-clip 裁剪 + JS 同步 translateX 实现横向跟随。 */
-.tl-axis-sticky{position:sticky;top:var(--head-h,62px);z-index:7;
+.tl-axis-sticky{position:sticky;top:var(--head-h,62px);z-index:39;
   background:var(--panel);border:1px solid var(--line);border-bottom:none;
   border-radius:var(--r2) var(--r2) 0 0;box-shadow:0 3px 9px rgba(31,28,23,.07)}
 .tl-axis-clip{overflow:hidden}
@@ -241,10 +241,37 @@ button{font-family:inherit;cursor:pointer}
 
 @media(max-width:900px){
   .cmp-grid{grid-template-columns:1fr}
-  .head-inner{flex-wrap:wrap;height:auto;padding:11px 0;gap:11px}
+  .head-inner{flex-wrap:wrap;height:auto;padding:9px 0;gap:8px}
   .search-box{order:3;max-width:100%;flex-basis:100%}
-  .head-nav{margin-left:0}
+  .head-nav{margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
+  .navbtn{padding:6px 10px;font-size:13px}
   .drawer-inner{padding:26px 20px 50px}
+}
+
+/* ---------- 手机（≤560px） ---------- */
+/* 表头换行后会变高（实测 62 → 106px），坐标轴的 sticky top 由 JS 实测写入 --head-h，
+   不能写死。这里只负责把表头压得更紧凑，给内容留出高度。 */
+@media(max-width:560px){
+  .wrap{padding:0 14px}
+  .head-inner{padding:8px 0;gap:7px}
+  .brand-text{font-size:15px}
+  .search-box{order:3}
+  .search-box input{padding:8px 12px;font-size:13px}
+  #globalSearch::placeholder{font-size:12px}
+  .head-nav{order:2;gap:2px}
+  .navbtn{padding:5px 9px;font-size:12.5px;border-radius:6px}
+  h1{font-size:21px}
+  .view-intro p{font-size:13.5px}
+  .howto{padding:12px 14px}
+  .howto li{font-size:12.5px}
+  /* 手机上坐标轴与色块都缩窄，减少横向拖动距离 */
+  .tl-axis{margin:10px 14px 0}
+  .tl-body{margin:0 14px}
+  .tl-tick{font-size:10px}
+  .tl-band-name{font-size:12px}
+  .tl-band-count{font-size:10.5px}
+  /* iOS 惯性滚动，避免横向拖动发涩 */
+  .tl-scroll{-webkit-overflow-scrolling:touch}
 }
 
 /* ---------- 风格示意图 ---------- */

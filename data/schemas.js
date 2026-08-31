@@ -49,5 +49,30 @@ window.AH_SCHEMA = {
   label:'当代艺术示意',
   desc:'媒介开放、观念优先、无统一风格',
   svg:'<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#F2F0EC"/><rect x="16" y="16" width="76" height="76" fill="#4A6FA5"/><g stroke="#2F2E2B" stroke-width="1.4" fill="none"><rect x="108" y="16" width="76" height="76"/><path d="M108 16 L184 92 M184 16 L108 92"/></g><circle cx="54" cy="146" r="34" fill="none" stroke="#D96C4F" stroke-width="8" stroke-dasharray="13 9"/><g fill="#7BA05B"><rect x="112" y="112" width="20" height="20"/><rect x="140" y="112" width="20" height="20"/><rect x="168" y="112" width="16" height="20"/><rect x="112" y="140" width="20" height="20"/><rect x="140" y="140" width="20" height="20"/><rect x="112" y="168" width="20" height="16"/><rect x="168" y="168" width="16" height="16"/></g></svg>'
+ },
+ 'neue-sachlichkeit':{
+  label:'新客观主义示意',
+  desc:'冷灰土黄、硬边透视、被钉住的人形',
+  svg:'<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#4A4E44"/><path d="M0 132 L200 118 V200 H0Z" fill="#6B6553"/><path d="M0 132 L58 96 L58 200 L0 200Z" fill="#3B3F38"/><path d="M200 118 L146 90 L146 200 L200 200Z" fill="#3B3F38"/><rect x="82" y="70" width="34" height="66" fill="#8C7A4E" stroke="#23261F" stroke-width="1.6"/><circle cx="99" cy="56" r="17" fill="#B3A377" stroke="#23261F" stroke-width="1.6"/><path d="M93 52 h5 M104 52 h5" stroke="#23261F" stroke-width="1.6"/><path d="M92 64 q7 4 14 0" stroke="#23261F" stroke-width="1.4" fill="none"/><path d="M82 92 L58 126 M116 92 L146 122" stroke="#23261F" stroke-width="2.4" fill="none"/><rect x="24" y="150" width="30" height="8" fill="#A33B2A"/><path d="M150 44 L176 44 L176 70 L150 70Z" fill="none" stroke="#D6CBB2" stroke-width="1.2"/></svg>'
+ },
+ 'conceptual-art':{
+  label:'观念艺术示意',
+  desc:'文字即作品、去物质化、文件与图表',
+  svg:'<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#F1EFE8"/><rect x="26" y="26" width="148" height="148" fill="none" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="6 5"/><g stroke="#2C2C2A" stroke-width="3"><path d="M46 68 H154"/><path d="M46 88 H132"/><path d="M46 108 H154"/><path d="M46 128 H108"/></g><rect x="46" y="44" width="52" height="10" fill="#888780"/><g fill="none" stroke="#5F5E5A" stroke-width="1.4"><rect x="118" y="140" width="18" height="18"/><rect x="142" y="140" width="18" height="18"/></g><path d="M124 148 L130 154 M136 142 L124 154" stroke="#2C2C2A" stroke-width="1.4" fill="none"/></svg>'
+ },
+ 'fluxus':{
+  label:'激浪派示意',
+  desc:'事件谱卡片、日常物、可邮寄的廉价盒',
+  svg:'<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#EFEAD9"/><rect x="22" y="52" width="156" height="96" fill="#D8D3C4" stroke="#2B2B29" stroke-width="2"/><path d="M22 52 L100 100 L178 52" fill="none" stroke="#2B2B29" stroke-width="1.6"/><rect x="40" y="26" width="58" height="40" fill="#FFFFFF" stroke="#2B2B29" stroke-width="1.6" transform="rotate(-8 69 46)"/><g stroke="#2B2B29" stroke-width="2"><path d="M50 40 H84"/><path d="M50 50 H74"/></g><circle cx="140" cy="112" r="15" fill="#C1442F"/><rect x="52" y="108" width="26" height="26" fill="#7E8B6B"/><path d="M96 118 l10 -12 l10 12 l-10 12Z" fill="#2B2B29"/></svg>'
+ },
+ 'neo-expressionism':{
+  label:'新表现主义示意',
+  desc:'厚涂焦褐、材料嵌入、粗暴的形象',
+  svg:'<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#3A2E24"/><path d="M0 148 Q52 128 104 142 T200 130 V200 H0Z" fill="#1E1C19"/><g stroke="#C9BFA6" stroke-width="2.2" opacity=".8"><path d="M14 150 L26 108"/><path d="M34 152 L44 104"/><path d="M56 148 L62 110"/><path d="M78 150 L88 100"/><path d="M104 144 L112 106"/><path d="M128 146 L134 108"/><path d="M154 140 L160 104"/><path d="M176 138 L182 110"/></g><path d="M56 30 Q100 14 144 32 Q152 62 128 76 Q100 86 72 74 Q48 60 56 30Z" fill="#7D6A4F" opacity=".85"/><path d="M62 44 Q100 30 138 46" stroke="#A8341F" stroke-width="4" fill="none"/><rect x="150" y="160" width="34" height="24" fill="#7D6A4F" opacity=".7"/></svg>'
+ },
+ 'aboriginal-art':{
+  label:'澳洲原住民点绘示意',
+  desc:'同心圆为营地水源、连线为路线、点绘覆盖',
+  svg:'<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#7C3A1E"/><g fill="none" stroke="#D9CBB0" stroke-width="3"><circle cx="56" cy="56" r="10"/><circle cx="56" cy="56" r="19"/><circle cx="56" cy="56" r="28"/><circle cx="146" cy="140" r="9"/><circle cx="146" cy="140" r="17"/><circle cx="146" cy="140" r="25"/></g><path d="M84 66 Q112 92 128 124" stroke="#C89B6A" stroke-width="5" fill="none"/><path d="M52 92 Q60 132 96 158" stroke="#C89B6A" stroke-width="5" fill="none"/><g fill="#D9CBB0"><circle cx="150" cy="40" r="3"/><circle cx="162" cy="52" r="3"/><circle cx="174" cy="40" r="3"/><circle cx="162" cy="28" r="3"/><circle cx="26" cy="150" r="3"/><circle cx="38" cy="162" r="3"/><circle cx="26" cy="174" r="3"/><circle cx="14" cy="162" r="3"/><circle cx="112" cy="30" r="3"/><circle cx="180" cy="94" r="3"/><circle cx="96" cy="184" r="3"/><circle cx="20" cy="108" r="3"/></g></svg>'
  }
 };

@@ -138,7 +138,7 @@ window.AH_DATA.push(
     {title:'移民母亲', titleEn:'Migrant Mother', year:'1936', artist:'兰格', where:'美国国会图书馆'}
   ],
   context:'墨西哥革命后的国家重建需要塑造统一的民族认同，政府主动以公共壁画作为教育工具。1929年大萧条与法西斯主义的兴起使欧美艺术界普遍左转，罗斯福新政的联邦艺术计划则以国家资金雇用大批艺术家从事公共创作。',
-  from:['realism','post-impressionism','pre-columbian'], to:['abstract-expressionism','contemporary'],
+  from:['realism','post-impressionism','pre-columbian','neue-sachlichkeit'], to:['abstract-expressionism','contemporary'],
   terms:[
     {t:'墨西哥壁画运动', d:'Muralismo，1920年代起以公共壁画进行民族教育的运动'},
     {t:'联邦艺术计划', d:'Federal Art Project，新政时期雇用艺术家创作公共作品的项目'},

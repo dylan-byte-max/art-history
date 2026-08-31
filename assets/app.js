@@ -875,8 +875,17 @@ function scoreHit(item,q){
     if(ok) sc=80;
   }
   if(sc){
+    // 中文译名的姓氏多在末尾：搜「洛兰」应优先命中画家「克洛德·洛兰」而非术语「洛兰镜」
+    if(lab.length>q.raw.length && lab.lastIndexOf(q.raw)===lab.length-q.raw.length) sc+=220;
+    // 匹配覆盖率：查询词占标签比例越高越精确，
+    // 使「勒布伦」优先命中「夏尔·勒布伦」而非「伊丽莎白·维热·勒布伦」。
+    // 仅在标签确实包含查询词时计算，否则短标题（如作品《鞋》）会因比值>1 而虚高
+    if(lab.length && lab.indexOf(q.raw)>=0){
+      sc+=Math.round(Math.min(1,q.raw.length/lab.length)*120);
+    }
     if(item.pid) sc+=30;                       // 有完整档案的优先
-    if(item.kind==='画家') sc+=12;
+    if(item.kind==='画家') sc+=40;
+    if(item.kind==='流派') sc+=20;
     if(item.kind==='作品') sc+=8;
   }
   return sc;
